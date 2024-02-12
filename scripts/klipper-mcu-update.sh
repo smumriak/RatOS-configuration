@@ -4,15 +4,15 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-echo "##### Flashing connected MCU's"
-flash_result=$(curl --fail --silent -X POST 'http://localhost:3000/configure/api/trpc/mcu.flash-all-connected' -H 'content-type: application/json')
-configurator_success=$?
-if [ $configurator_success -eq 0 ]
-then
-    echo $flash_result | jq -r '.result.data.json'
-else
-    echo "Failed to flash connected MCUs, is the configurator running?"
-fi
+#echo "##### Flashing connected MCU's"
+#flash_result=$(curl --fail --silent -X POST 'http://localhost:3000/configure/api/trpc/mcu.flash-all-connected' -H 'content-type: application/json')
+#configurator_success=$?
+#if [ $configurator_success -eq 0 ]
+#then
+#    echo $flash_result | jq -r '.result.data.json'
+#else
+#    echo "Failed to flash connected MCUs, is the configurator running?"
+#fi
 
 echo "##### Symlinking registered klippy extensions"
 extensions_result=$(curl --fail --silent -X POST 'http://localhost:3000/configure/api/trpc/klippy-extensions.symlink' -H 'content-type: application/json')
